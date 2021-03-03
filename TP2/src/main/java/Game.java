@@ -1,5 +1,4 @@
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -11,8 +10,8 @@ import java.io.IOException;
 
 public class Game {
     Screen screen;
-    private int x = 10;
-    private int y = 10;
+    Hero hero = new Hero(10, 10);
+
 
     Game() throws IOException {
         try {
@@ -32,7 +31,7 @@ public class Game {
 
     private void draw() throws IOException {
         screen.clear();
-        screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
+        hero.draw(screen);
         screen.refresh();
     }
 
@@ -53,27 +52,22 @@ public class Game {
         System.out.println(key);
         switch (key.getKeyType())
         {
-            case ArrowDown:
-            {
-                y += 1;
+            case ArrowDown: {
+                hero.moveDown();
                 break;
             }
-            case ArrowUp:
-            {
-                y -= 1;
+            case ArrowUp:{
+                hero.moveUp();
                 break;
             }
-            case ArrowLeft:
-            {
-                x -= 1;
+            case ArrowLeft:{
+                hero.moveLeft();
                 break;
             }
-            case ArrowRight: {
-                x += 1;
+            case ArrowRight:{
+                hero.moveRight();
                 break;
             }
         }
     }
-
-
 }
