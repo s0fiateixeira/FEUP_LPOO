@@ -12,7 +12,6 @@ public class Game {
     Screen screen;
     Hero hero = new Hero(10, 10);
 
-
     Game() throws IOException {
         try {
             TerminalSize terminalSize = new TerminalSize(40, 20);
@@ -48,24 +47,28 @@ public class Game {
         } while (key.getKeyType() != KeyType.EOF);
     }
 
+    private void moveHero(Position position) {
+        hero.setPosition(position);
+    }
+
     private void processKey(com.googlecode.lanterna.input.KeyStroke key) {
         System.out.println(key);
         switch (key.getKeyType())
         {
             case ArrowDown: {
-                hero.moveDown();
+                moveHero(hero.moveDown());
                 break;
             }
             case ArrowUp:{
-                hero.moveUp();
+                moveHero(hero.moveUp());
                 break;
             }
             case ArrowLeft:{
-                hero.moveLeft();
+                moveHero(hero.moveLeft());
                 break;
             }
             case ArrowRight:{
-                hero.moveRight();
+                moveHero(hero.moveRight());
                 break;
             }
         }
