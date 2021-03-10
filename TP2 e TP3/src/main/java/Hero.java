@@ -31,7 +31,7 @@ public class Hero extends Element {
 
     public void draw(TextGraphics graphics)
     {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF3333"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "X");
     }

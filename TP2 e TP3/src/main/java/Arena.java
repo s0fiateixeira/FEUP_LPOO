@@ -4,10 +4,12 @@ import com.googlecode.lanterna.screen.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Arena {
     private List<Wall> walls;
+    private List<Coin> coins;
     private int width;
     private int height;
     Hero hero = new Hero(10, 10);
@@ -17,6 +19,7 @@ public class Arena {
         this.height = height;
         hero = new Hero(10, 10);
         this.walls = createWalls();
+        this.coins = createCoins();
     }
 
     private List<Wall> createWalls() {
@@ -85,11 +88,32 @@ public class Arena {
         }
     }
 
+    private List<Coin> createCoins() {
+        Random random = new Random();
+        ArrayList<Coin> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            //boolean valid = true;
+            int coin_width, coin_height;
+            coin_width = random.nextInt(width - 2) + 1;
+            coin_height = random.nextInt(height - 2) + 1;
+            Coin coin1 = new Coin(coin_width, coin_height);
+            if (!coin1.getPosition().equals(hero.getPosition())) {
+                for (Coin coin : coins) {
+                    if (!coin.getPosition().equals(coin1.getPosition()))
+                        coins.add(coin1);
+                }
+            }
+        }
+        return coins;
+    }
+
     void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         hero.draw(graphics);
         for (Wall wall : walls)
             wall.draw(graphics);
+        for (Coin coin : coins)
+            coin.draw(graphics);
     }
 }
