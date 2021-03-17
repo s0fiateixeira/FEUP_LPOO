@@ -11,6 +11,7 @@ public class Application {
         a.addShape(new Ellipse(2, 5));
         a.addShape(new Ellipse(3, 6));
         a.addShape(new Triangle(5, 5));
+        a.addShape(new House(45));
 
         AreaStringOutputter stringOutputter = new AreaStringOutputter(a);
         //AreaXMLOutputter xmlOutputter = new AreaXMLOutputter(a);
