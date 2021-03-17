@@ -10,12 +10,13 @@ public class Application {
         a.addShape(new Square(45));
         a.addShape(new Ellipse(2, 5));
         a.addShape(new Ellipse(3, 6));
+        a.addShape(new Triangle(5, 5));
 
         AreaStringOutputter stringOutputter = new AreaStringOutputter(a);
-        AreaXMLOutputter xmlOutputter = new AreaXMLOutputter(a);
+        //AreaXMLOutputter xmlOutputter = new AreaXMLOutputter(a);
 
         System.out.println(stringOutputter.output());
-        System.out.println(xmlOutputter.output());
+        //System.out.println(xmlOutputter.output());
 
     }
 }
